@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -ex
+
+env DATABASE_URL=postgres://credential \
+  bin/pg-env-fix --attachment DATABASE \
+  printenv DATABASE_URL

@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+require "optparse"
+
+attachments = []
+OptionParser.new do |opts|
+  opts.banner = "Usage: db-env-fix --attachment DATABASE --attachment FOLLOWER"
+
+  opts.on("--attachment ATTACHMENT", "Modify this ATTACHMENT config") do |attachment|
+    attachments << attachment
+  end
+end.parse!
+
+attachments.each do |attachment|
+  key = "#{attachment}_URL"
+  puts("[PGENVFIX] modifying #{key}")
+  old_value = ENV.fetch(key)
+  ENV[key] = old_value.sub("postgres://", "postgresql://")
+end
+
+exec(*ARGV)
