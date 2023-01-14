@@ -1,9 +1,11 @@
 #!/usr/bin/env ruby
 
+#require "optparse"
+
 attachments = ENV.keys
 attachments.each do |attachment|
   old_value = ENV.fetch(attachment)
   ENV[attachment] = old_value.sub("postgres://", "postgresql://")
 end
 
-exec(*ARGV)
+#exec(*ARGV)
