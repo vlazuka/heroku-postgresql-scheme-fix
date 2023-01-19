@@ -6,7 +6,7 @@ export_env_dir() {
   denylist_regex=${3:-'^(PATH|GIT_DIR|CPATH|CPPATH|LD_PRELOAD|LIBRARY_PATH)$'}
   for e in $(ls $env_dir); do
     echo "$e" | grep -E "$acceptlist_regex" | grep -qvE "$denylist_regex" &&
-    export "$e=${$(cat $env_dir/$e)/"$postgres"/"$postgresql"}"
+    export "$e=${(cat $env_dir/$e)/"$postgres"/"$postgresql"}"
     :
   done
 }
