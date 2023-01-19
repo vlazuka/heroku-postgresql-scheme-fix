@@ -13,4 +13,4 @@ export_env_dir() {
   fi
 }
 
-export_env_dir()
+export_env_dir
